@@ -2,8 +2,9 @@ services:
   - type: web
     name: razorpay-checker
     runtime: python
+    pythonVersion: 3.11.8
     buildCommand: pip install -r requirements.txt && playwright install chromium
-    startCommand: python3 app.py
+    startCommand: gunicorn app:app
     envVars:
       - key: PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
         value: /usr/bin/chromium-browser
